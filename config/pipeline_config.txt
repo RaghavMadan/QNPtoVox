@@ -1,0 +1,72 @@
+# QNPtoVox Pipeline Configuration
+# Simple text-based configuration file
+# Format: key=value (no spaces around =)
+# Lines starting with # are comments
+
+# Pipeline Information
+pipeline_name=QNPtoVox Pipeline
+pipeline_version=1.0
+pipeline_description=Extract QNP values from Halo annotations and register to MNI coordinates
+
+# Directory Paths
+input_base=Input
+input_mgz_images=Input/exvivo_transformed
+input_halo_annotations=Input/Halo_extract/Annotations
+output_base=output
+logs_dir=logs
+
+# Subject-specific output structure: output/XXXX/step_folders
+output_coordinates_suffix=_coordinates
+output_preprocessing_suffix=_preprocessing
+output_registration_suffix=_registration
+output_qnp_values_suffix=_qnp_values
+output_final_results_suffix=_final_results
+output_transformation_suffix=_transformation
+
+# Subject Configuration
+subject_list=6966,7038,7051,7064,7067,7101,7124,7144,7157,7297
+mgz_filename=001.mgz
+subject_suffix=X
+annotation_suffix=-A1-AT8.annotations
+special_annotation_7038=-A2-AT8.annotations
+special_annotation_7101=-A2-AT8.annotations
+
+# Brain Slicing Parameters (First Step)
+slice_thickness=0.5
+slice_direction=anterior_to_posterior
+output_format=png
+image_normalization=true
+flip_left_right=true
+slice_naming_pattern={subject}_s.{slice_num:03d}.png
+
+# Processing Parameters
+coordinate_scale_factor=1000
+tile_sampling_interval=5
+remove_outliers=true
+outlier_threshold=3.0
+outlier_method=zscore
+
+# Registration Parameters
+mni_template=mni_icbm152_t1_nlin_sym_09b_hires_stripped.nii.gz
+mni_template_path=Input/mni_icbm152_t1_nlin_sym_09b_hires_stripped.nii.gz
+registration_mode=full
+interpolation=Linear
+
+# Coordinate Transformation Parameters
+manual_coordinates_file=config/manual_coordinates.txt
+transformation_script=../QNPtoMNI/QNPtoMask/QNP_transformed_to_mask.py
+block_size=7
+coordinate_offset_x=0
+coordinate_offset_y=0
+coordinate_offset_z=0
+
+# Quality Control
+min_coordinates_per_subject=100
+max_coordinate_value=1000000
+validate_inputs=true
+check_file_existence=true
+
+# Execution Settings
+log_level=INFO
+parallel_processing=false
+max_workers=4 

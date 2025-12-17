@@ -1,0 +1,35 @@
+# Manual Coordinate Input File for QNPtoVox Pipeline
+# This file contains manually identified X, Y, Z coordinates for each subject
+# Format: subject_id=X,Y,Z
+# 
+# X: Manual X coordinate offset in MNI space (Original_X + X_offset)
+# Y: Manual Y coordinate (slice number) in MNI space  
+# Z: Manual Z coordinate offset in MNI space (Original_Z + Z_offset)
+#
+# Transformation Analysis from QNPtoMNI/QNPtoMask:
+# - X_offset: Varies by subject (calculated from original vs transformed coordinates)
+# - Y: Fixed slice number per subject (manually identified)
+# - Z_offset: Varies by subject (calculated from original vs transformed coordinates)
+#
+# Example:
+# 6966=200,278,200  (X_offset=200, Y=278, Z_offset=200)
+# 7038=117,289,200  (X_offset=117, Y=289, Z_offset=200)
+#
+# Instructions:
+# 1. Identify the slice number (Y coordinate) from the brain slices
+# 2. Manually determine X and Z coordinates based on anatomical landmarks
+# 3. Add entries for each subject below
+# 4. Save this file and re-run the pipeline
+
+# Subject Coordinates (calculated from systematic analysis):
+# Format: subject_id=X_offset,Y_slice,Z_offset
+6966=200,278,200
+7038=117,289,200
+7051=200,277,200
+7064=249,292,210
+7067=240,263,210
+7101=123,280,210
+7124=258,293,200
+7144=244,266,220
+7157=262,287,200
+7297=243,282,210
